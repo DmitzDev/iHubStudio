@@ -1,0 +1,21 @@
+{
+  "name": "ihub-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "iHub Studio — Student-led creative technology, digital media, and campus innovation organization.",
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build:shared": "npm run build --workspace=@ihub/shared",
+    "predev": "npm run build:shared",
+    "dev": "concurrently -n shared,api,web -c gray,blue,green \"npm run dev --workspace=@ihub/shared\" \"npm run dev --workspace=@ihub/backend\" \"npm run dev --workspace=@ihub/frontend\"",
+    "build": "npm run build --workspace=@ihub/shared && npm run build --workspace=@ihub/backend && npm run build --workspace=@ihub/frontend",
+    "typecheck": "npm run typecheck --workspace=@ihub/shared && npm run typecheck --workspace=@ihub/backend && npm run typecheck --workspace=@ihub/frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
